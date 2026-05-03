@@ -10,43 +10,59 @@ namespace TestProject1
     public class Hooks
     {
         private IObjectContainer _container;
-        private IPlaywright _playwright;
+        private static IPlaywright _playwright;
         private IBrowser _browser;
         private IBrowserContext _browserContext;
-        private IPage _page;        
+        private IPage _page;
         private ScenarioContext _scenarioContext;
 
         public Hooks(IObjectContainer container, ScenarioContext scenarioContext)
         {
-            _container = container;
-            _scenarioContext = scenarioContext;
+             _container = container;
+             _scenarioContext = scenarioContext;
+        }
+
+        [BeforeTestRun]
+        public static async Task BeforeTestRun()
+        {
+            _playwright = await Playwright.CreateAsync();            
         }
 
         [BeforeScenario]
-        public async Task FirstBeforeScenario()
+        public async Task BeforeScenario()
         {
-            _playwright = await Playwright.CreateAsync();
             _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
-            
+
             if (_browser == null)
             {
                 throw new Exception("Browser is NULL – BeforeTestRun did not run");
             }
-
             _browserContext = await _browser.NewContextAsync();
-            _page = await _browserContext.NewPageAsync();           
-            _page.SetDefaultTimeout(30000);
-             await _page.SetViewportSizeAsync(1920, 1080);
+            _page = await _browserContext.NewPageAsync();
+            _page.SetDefaultTimeout(10000);
+            await _page.SetViewportSizeAsync(1920, 1080);
             _container.RegisterInstanceAs(_playwright);
             _container.RegisterInstanceAs(_browser);
             _container.RegisterInstanceAs(_browserContext);
-            _container.RegisterInstanceAs(_page);  
+            _container.RegisterInstanceAs(_page);
         }
 
         [AfterScenario]
         public async Task AfterScenario()
-        {         
-            await _browser.CloseAsync();
-        }      
+        {
+            if (_scenarioContext.TestError != null)
+            {
+                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots");
+                Directory.CreateDirectory(folderPath);               
+                var screenshotPath = Path.Combine(folderPath,$"{_scenarioContext.ScenarioInfo.Title}_{DateTime.Now:yyyyMMdd_HHmmss}.png");
+                await _page.ScreenshotAsync(new PageScreenshotOptions { Path = screenshotPath, FullPage = true });
+                Console.WriteLine($"Screenshot taken: {screenshotPath}");
+            }
+
+            if (_browserContext != null)
+            {
+                await _browserContext.CloseAsync();
+            }
+        }
     }
 }

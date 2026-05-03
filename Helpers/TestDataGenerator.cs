@@ -9,7 +9,6 @@ namespace TestProject1.Helpers
     {
         public static RandomTestData Generate()
         {            
-
             var faker = new Faker("en_IND");
 
             return new RandomTestData

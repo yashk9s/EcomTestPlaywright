@@ -1,6 +1,7 @@
 using Microsoft.Playwright;
 using Microsoft.Win32;
 using Reqnroll;
+using NUnit.Framework;
 using System;
 using System.Buffers.Text;
 using System.Text.RegularExpressions;
@@ -12,13 +13,14 @@ using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext
 namespace TestProject1.StepDefination
 {
     [Binding]
+    [Parallelizable(ParallelScope.Self)]
     public class SmokeTestingStepDefinitions
     {
         private IPage _page;
         private readonly ScenarioContext _scenarioContext;
         private readonly AppConfigs _appConfigs;
         private readonly HomePage _homePage;
-        private readonly ProductAdd _productAdd;       
+        private readonly ProductAdd _productAdd;
         private readonly CommonLocators _commonLocators;
         private readonly RegistrationPage _registrationPage;
         public SmokeTestingStepDefinitions(ScenarioContext scenarioContext, HomePage homePage, ProductAdd productAdd,
@@ -27,7 +29,7 @@ namespace TestProject1.StepDefination
             _page = page;
             _scenarioContext = scenarioContext;
             _homePage = homePage;
-            _productAdd = productAdd;            
+            _productAdd = productAdd;
             _commonLocators = commonLocators;
             _registrationPage = registrationPage;
             _appConfigs = new AppConfigs();
@@ -37,8 +39,8 @@ namespace TestProject1.StepDefination
         public async Task GivenLaunchingTheApplication()
         {
             var url = _appConfigs.GetJsonFile("BaseUrl");
-            await _page.GotoAsync(url);           
-        }        
+            await _page.GotoAsync(url);
+        }
 
         [Given("user is on the homepage")]
         public async Task GivenUserIsOnTheHomepage()
@@ -132,7 +134,7 @@ namespace TestProject1.StepDefination
             await _registrationPage.EnterPassword();
             await _registrationPage.EnterConfirmPassword();
             await _registrationPage.AgreeToTerms();
-            await _commonLocators.ClickOnContinueButton();            
+            await _commonLocators.ClickOnContinueButton();
         }
 
 

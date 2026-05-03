@@ -2,5 +2,9 @@
   "$schema": "https://schemas.reqnroll.net/reqnroll-config-latest.json",
 
   "bindingAssemblies": [
-  ]
+  ],
+  "parallelExecution": {
+    "testThreadCount": 4,
+    "testThreadIsolation": "AppDomain"
+  }
 }

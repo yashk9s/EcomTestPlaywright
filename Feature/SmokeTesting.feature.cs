@@ -20,12 +20,14 @@ namespace TestProject1.Feature
     [global::NUnit.Framework.TestFixtureAttribute()]
     [global::NUnit.Framework.DescriptionAttribute("SmokeTesting")]
     [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
+    [global::NUnit.Framework.CategoryAttribute("Retry(2)")]
     public partial class SmokeTestingFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "Retry(2)"};
         
         private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Feature", "SmokeTesting", "This feature has smoke scenarios to test login, registration, End-to-End and sear" +
                 "ch functionality of the application.", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
@@ -106,9 +108,9 @@ namespace TestProject1.Feature
         
         public virtual async global::System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
-#line 5
-#line hidden
 #line 6
+#line hidden
+#line 7
  await testRunner.GivenAsync("Launching the Application", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
         }
@@ -120,6 +122,7 @@ namespace TestProject1.Feature
         
         [global::NUnit.Framework.TestAttribute()]
         [global::NUnit.Framework.DescriptionAttribute("Successfully purchase a product")]
+        [NUnitRetry.NRetry(2)]
         [global::NUnit.Framework.CategoryAttribute("endtoend")]
         [global::NUnit.Framework.CategoryAttribute("smoke")]
         public async global::System.Threading.Tasks.Task SuccessfullyPurchaseAProduct()
@@ -132,7 +135,7 @@ namespace TestProject1.Feature
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successfully purchase a product", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 9
+#line 10
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -142,22 +145,22 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 5
+#line 6
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 10
+#line 11
  await testRunner.GivenAsync("user is on the homepage", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 12
  await testRunner.AndAsync("user adds a product to the cart", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
  await testRunner.WhenAsync("user enters required checkout details", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 14
  await testRunner.AndAsync("user clicks on proceed to checkout", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 15
  await testRunner.ThenAsync("order should be placed successfully", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -166,6 +169,7 @@ await this.FeatureBackgroundAsync();
         
         [global::NUnit.Framework.TestAttribute()]
         [global::NUnit.Framework.DescriptionAttribute("Login with valid credentials")]
+        [NUnitRetry.NRetry(2)]
         [global::NUnit.Framework.CategoryAttribute("smoke")]
         [global::NUnit.Framework.TestCaseAttribute("\'Pawan\'", "\'Pawan@123\'", "1", null)]
         public async global::System.Threading.Tasks.Task LoginWithValidCredentials(string username, string password, string @__pickleIndex, string[] exampleTags)
@@ -184,7 +188,7 @@ await this.FeatureBackgroundAsync();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Login with valid credentials", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 17
+#line 18
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -194,19 +198,19 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 5
+#line 6
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 18
+#line 19
  await testRunner.GivenAsync("user is on the homepage", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 19
+#line 20
  await testRunner.AndAsync("user navigates to the login page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 21
  await testRunner.WhenAsync(string.Format("user enters valid username and password {0} {1}", username, password), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 22
  await testRunner.ThenAsync("user should be logged in successfully", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -215,6 +219,7 @@ await this.FeatureBackgroundAsync();
         
         [global::NUnit.Framework.TestAttribute()]
         [global::NUnit.Framework.DescriptionAttribute("User should be able to search and find relevant products.")]
+        [NUnitRetry.NRetry(2)]
         [global::NUnit.Framework.CategoryAttribute("smoke")]
         [global::NUnit.Framework.TestCaseAttribute("\'shirt\'", "\'0,68\'", "2", null)]
         public async global::System.Threading.Tasks.Task UserShouldBeAbleToSearchAndFindRelevantProducts_(string keyword, string category, string @__pickleIndex, string[] exampleTags)
@@ -233,7 +238,7 @@ await this.FeatureBackgroundAsync();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("User should be able to search and find relevant products.", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 27
+#line 28
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -243,16 +248,16 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 5
+#line 6
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 28
+#line 29
  await testRunner.GivenAsync("user is on the homepage", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 29
+#line 30
  await testRunner.WhenAsync(string.Format("user enters keyword and category {0} {1}", keyword, category), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 30
+#line 31
  await testRunner.ThenAsync("Results match search keyword", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -261,6 +266,7 @@ await this.FeatureBackgroundAsync();
         
         [global::NUnit.Framework.TestAttribute()]
         [global::NUnit.Framework.DescriptionAttribute("Validate User is able to register successfully")]
+        [NUnitRetry.NRetry(2)]
         [global::NUnit.Framework.CategoryAttribute("smoke")]
         public async global::System.Threading.Tasks.Task ValidateUserIsAbleToRegisterSuccessfully()
         {
@@ -271,7 +277,7 @@ await this.FeatureBackgroundAsync();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Validate User is able to register successfully", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 36
+#line 37
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -281,16 +287,16 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 5
+#line 6
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 37
+#line 38
  await testRunner.GivenAsync("user is on the homepage", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 38
+#line 39
  await testRunner.WhenAsync("user fills the registration form with valid details", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 39
+#line 40
  await testRunner.ThenAsync("user is able to register successfully", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }

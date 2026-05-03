@@ -1,4 +1,5 @@
-﻿Feature: SmokeTesting
+﻿@Retry(2)
+Feature: SmokeTesting
 
 This feature has smoke scenarios to test login, registration, End-to-End and search functionality of the application.
 
@@ -20,7 +21,7 @@ Scenario: Login with valid credentials
 	When user enters valid username and password <username> <password>
 	Then user should be logged in successfully
 Examples:
-	| username | password    |
+	| username | password   |
 	| 'Pawan'  | 'Pawan@123' |
 
 @smoke
