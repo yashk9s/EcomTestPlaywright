@@ -30,10 +30,10 @@ jobs:
       - name: Build Project
         run: dotnet build --configuration Release --no-restore
 
-      - name: Install Playwright Browsers
+      - name: Install Playwright Browser chromium
         run: |
           dotnet tool install --global Microsoft.Playwright.CLI
-          playwright install --with-deps
+          playwright install chromium --with-deps
 
       - name: Run Tests
         run: dotnet test --configuration Release --no-build
