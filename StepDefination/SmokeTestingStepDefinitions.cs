@@ -1,19 +1,11 @@
 using Microsoft.Playwright;
-using Microsoft.Win32;
 using Reqnroll;
-using NUnit.Framework;
-using System;
-using System.Buffers.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using TestProject1.Configs;
 using TestProject1.Pages;
-using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace TestProject1.StepDefination
 {
     [Binding]
-    [Parallelizable(ParallelScope.Self)]
     public class SmokeTestingStepDefinitions
     {
         private IPage _page;
