@@ -1,6 +1,4 @@
 ﻿using Microsoft.Playwright;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection.Emit;
 
 namespace TestProject1.Pages
 {
@@ -53,7 +51,7 @@ namespace TestProject1.Pages
 
         public async Task<bool> VerifySearchCriteriaHeading()
         {
-            var isVisible = await SearchCriteriaHeading.IsVisibleAsync();
+            bool isVisible = await SearchCriteriaHeading.IsVisibleAsync();
             return isVisible;
         }
 
@@ -69,7 +67,7 @@ namespace TestProject1.Pages
 
         public async Task<bool> VerifyAccountLoginHeading()
         {
-            var isVisible = await AccountLoginHeading.IsVisibleAsync();
+            bool isVisible = await AccountLoginHeading.IsVisibleAsync();
             return isVisible;
         }
 
@@ -90,7 +88,7 @@ namespace TestProject1.Pages
 
         public async Task<bool> VerifyMyAccountHeading()
         {
-            var isVisible = await MyAccountHeading.IsVisibleAsync();
+            bool isVisible = await MyAccountHeading.IsVisibleAsync();
             return isVisible;
         }        
     }

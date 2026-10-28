@@ -1,12 +1,11 @@
 ﻿using Microsoft.Playwright;
-using System.Diagnostics;
 using TestProject1.Helpers;
 
 namespace TestProject1.Pages
 {
     public class ProductAdd(IPage _page)
     {
-        private ILocator MenNavbarLink => _page.GetByRole(AriaRole.Link, new() { Name = "MEN" }).First; 
+        private ILocator MenNavbarLink => _page.GetByRole(AriaRole.Link, new() { Name = "MEN" }).First;
         private ILocator FragranceSetsNavbarLink => _page.GetByRole(AriaRole.Link, new() { Name = "Fragrance Sets" });
         private ILocator FragranceSetsHeading => _page.GetByRole(AriaRole.Heading, new() { Name = "Fragrance Sets" });
         private ILocator ProductOne => _page.GetByRole(AriaRole.Link, new() { Name = "Armani Code after shave balm" });         
@@ -24,17 +23,9 @@ namespace TestProject1.Pages
         private ILocator City => _page.Locator("input#guestFrm_city");
         private ILocator PostCode => _page.Locator("input#guestFrm_postcode");
         private ILocator StateDropdown => _page.Locator("select#guestFrm_zone_id");
-        private ILocator StateCount => _page.Locator("//select[@id='guestFrm_zone_id']/option");
         private ILocator Country => _page.Locator("#guestFrm_country_id.form-control");
         private ILocator CheckoutConfirmationHeading => _page.GetByRole(AriaRole.Heading, new() { Name = "Checkout Confirmation" });
         private ILocator OrderProcessedHeading => _page.GetByRole(AriaRole.Heading, new() { Name = "Your Order Has Been Processed!" });
-        private ILocator FirstFeatureProduct => _page.Locator("div#block_frame_featured_1769").Locator("a.productcart[data-id='50']");
-
-
-        public async Task ClickOnFirstFeatureProduct()
-        {
-            await FirstFeatureProduct.ClickAsync();
-        }
 
         public async Task HoverOnMenNavbar()
         {
@@ -59,7 +50,6 @@ namespace TestProject1.Pages
         public async Task VerifyHeadingShoppingCart()
         {
             await ShoppingCartHeading.IsVisibleAsync();
-            
         }
 
         public async Task ClickOnCheckoutButton()
@@ -75,7 +65,6 @@ namespace TestProject1.Pages
         public async Task VerifyAccountLoginHeading()
         {
             await AccountLoginHeading.IsVisibleAsync();
-
         }
 
         public async Task VerifyGuestCheckoutHeading()
